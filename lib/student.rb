@@ -22,7 +22,8 @@ class Student
 
   def self.find_by_name(name)
     sql = <<-SQL
-      SELECT * FROM students
+      SELECT *
+      FROM students
       WHERE name = ?
       LIMIT 1
     SQL
@@ -58,4 +59,13 @@ class Student
     DB[:conn].execute(sql)
   end
 
+  def self.count_all_students_in_grade_9
+    sql = <<-SQL
+      SELECT *
+      FROM students
+      WHERE grade = "9th"
+    SQL
+
+    DB[:conn].execute(sql)
+  end
 end
