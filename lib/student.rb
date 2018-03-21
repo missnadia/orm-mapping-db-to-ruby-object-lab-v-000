@@ -114,6 +114,8 @@ class Student
       WHERE grade = g
     SQL
 
-    DB[:conn].execute(sql, g)
+    DB[:conn].execute(sql, g).map do |row|
+      self.new_from_db(row)
+    end
   end
 end
